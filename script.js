@@ -48,7 +48,7 @@ var ornamentArray = [
     "yellow-ornament.png",
     "green-ornament.png",
     "cyan-ornament.png",
-    "blue-ornament.png",
+    "old-blue-ornament-3.png",
     "purple-ornament.png",
     "pink-ornament.png",
     "white-ornament.png",
@@ -83,11 +83,11 @@ var flowerArray = [
 ];
 
 var topperArray = [
-    "star1.png",
-    "star2.png",
-    "star3.png",
-    "star4.png",
-    "bow.png"
+    "gold-star1.png",
+    "gold-star2.png",
+    "gold-star3.png",
+    "gold-star4.png",
+    "red-bow.png"
 ];
 
 var presentArray = [
