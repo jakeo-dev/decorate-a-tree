@@ -1,0 +1,274 @@
+<html>
+
+<head>
+    <title>Decorate a Tree</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <div id="decorButtons">
+        <button onclick="switchO();" id="switchO" class="decorB toggled">Ornaments</button>
+        <button onclick="switchC();" id="switchC" class="decorB">Candy Canes</button>
+        <button onclick="switchF();" id="switchF" class="decorB">Flowers</button>
+        <button onclick="switchT();" id="switchT" class="decorB">Toppers</button>
+        <button onclick="switchP();" id="switchP" class="decorB">Presents</button>
+    </div>
+
+    <div id="linkButtons">
+        <button onclick="openSupp();" id="openS" class="linkB">Support</button>
+        <button onclick="openMain();" id="openM" class="linkB">Jorch.xyz</button>
+    </div>
+
+    <canvas id="canvas">
+        <img id="tree" width="600" height="900" src="tree.png">
+
+        <img id="red-ornament.png" width="60" height="60" src="red-ornament.png">
+        <img id="orange-ornament.png" width="60" height="60" src="orange-ornament.png">
+        <img id="yellow-ornament.png" width="60" height="60" src="yellow-ornament.png">
+        <img id="green-ornament.png" width="60" height="60" src="green-ornament.png">
+        <img id="cyan-ornament.png" width="60" height="60" src="cyan-ornament.png">
+        <img id="blue-ornament.png" width="60" height="60" src="blue-ornament.png">
+        <img id="purple-ornament.png" width="60" height="60" src="purple-ornament.png">
+        <img id="pink-ornament.png" width="60" height="60" src="pink-ornament.png">
+        <img id="white-ornament.png" width="60" height="60" src="white-ornament.png">
+        <img id="brown-ornament.png" width="60" height="60" src="brown-ornament.png">
+        <img id="year-current-ornament.png" width="60" height="60" src="year-current-ornament.png">
+        <img id="party-ornament.png" width="60" height="60" src="party-ornament.png">
+
+        <img id="red-candy-cane-right.png" width="60" height="60" src="candy-cane-right.png">
+        <img id="red-candy-cane-left.png" width="60" height="60" src="candy-cane-left.png">
+        <img id="green-candy-cane-right.png" width="60" height="60" src="green-candy-cane-right.png">
+        <img id="green-candy-cane-left.png" width="60" height="60" src="green-candy-cane-left.png">
+        <img id="red-green-candy-cane-right.png" width="60" height="60" src="red-green-candy-cane-right.png">
+        <img id="red-green-candy-cane-left.png" width="60" height="60" src="red-green-candy-cane-left.png">
+        <img id="pink-candy-cane-right.png" width="60" height="60" src="pink-candy-cane-right.png">
+        <img id="pink-candy-cane-left.png" width="60" height="60" src="pink-candy-cane-left.png">
+        <img id="yellow-candy-cane-right.png" width="60" height="60" src="yellow-candy-cane-right.png">
+        <img id="yellow-candy-cane-left.png" width="60" height="60" src="yellow-candy-cane-left.png">
+        <img id="pink-yellow-candy-cane-right.png" width="60" height="60" src="pink-yellow-candy-cane-right.png">
+        <img id="pink-yellow-candy-cane-left.png" width="60" height="60" src="pink-yellow-candy-cane-left.png">
+
+        <img id="red-poinsettia.png" width="60" height="60" src="red-poinsettia.png">
+        <img id="yellow-poinsettia.png" width="60" height="60" src="yellow-poinsettia.png">
+        <img id="cyan-poinsettia.png" width="60" height="60" src="cyan-poinsettia.png">
+        <img id="blue-poinsettia.png" width="60" height="60" src="blue-poinsettia.png">
+        <img id="purple-poinsettia.png" width="60" height="60" src="purple-poinsettia.png">
+        <img id="pink-poinsettia.png" width="60" height="60" src="pink-poinsettia.png">
+        <img id="white-poinsettia.png" width="60" height="60" src="white-poinsettia.png">
+
+        <img id="star1.png" width="60" height="60" src="star1.png">
+        <img id="star2.png" width="60" height="60" src="star2.png">
+        <img id="star3.png" width="60" height="60" src="star3.png">
+        <img id="star4.png" width="60" height="60" src="star4.png">
+        <img id="bow.png" width="80" height="80" src="bow.png">
+
+        <img id="red-present.png" width="80" height="80" src="red-present.png">
+        <img id="red-present-long.png" width="96" height="68" src="red-present-long.png">
+        <img id="red-present-tall.png" width="52" height="96" src="red-present-tall.png">
+        <img id="yellow-present.png" width="80" height="80" src="yellow-present.png">
+        <img id="yellow-present-long.png" width="96" height="68" src="yellow-present-long.png">
+        <img id="yellow-present-tall.png" width="52" height="96" src="yellow-present-tall.png">
+        <img id="green-present.png" width="80" height="80" src="green-present.png">
+        <img id="green-present-long.png" width="96" height="68" src="green-present-long.png">
+        <img id="green-present-tall.png" width="52" height="96" src="green-present-tall.png">
+        <img id="blue-present.png" width="80" height="80" src="blue-present.png">
+        <img id="blue-present-long.png" width="96" height="68" src="blue-present-long.png">
+        <img id="blue-present-tall.png" width="52" height="96" src="blue-present-tall.png">
+        <img id="dark-blue-present.png" width="80" height="80" src="dark-blue-present.png">
+        <img id="dark-blue-present-long.png" width="96" height="68" src="dark-blue-present-long.png">
+        <img id="dark-blue-present-tall.png" width="52" height="96" src="dark-blue-present-tall.png">
+        <img id="purple-present.png" width="80" height="80" src="purple-present.png">
+        <img id="purple-present-long.png" width="96" height="68" src="purple-present-long.png">
+        <img id="purple-present-tall.png" width="52" height="96" src="purple-present-tall.png">
+    </canvas>
+
+</body>
+
+<script>
+
+    console.log("v1.1.2");
+
+    var decor = "orn";
+    var buttons = document.querySelectorAll(".decorB");
+
+    var canvas = document.getElementById("canvas");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    var ctx = canvas.getContext("2d");
+
+    buttons.forEach((decorB) => {
+        decorB.addEventListener("click", () => {
+
+            buttons.forEach((decorB) => {
+                decorB.classList.remove("toggled");
+            })
+
+            decorB.classList.add("toggled");
+
+        })
+    })
+
+    function switchO() {
+        decor = "orn";
+    }
+
+    function switchC() {
+        decor = "cane";
+    }
+
+    function switchF() {
+        decor = "flower";
+    }
+
+    function switchT() {
+        decor = "top";
+    }
+
+    function switchP() {
+        decor = "pres";
+    }
+
+    var ornamentArray = [
+        "red-ornament.png",
+        "orange-ornament.png",
+        "yellow-ornament.png",
+        "green-ornament.png",
+        "cyan-ornament.png",
+        "blue-ornament.png",
+        "purple-ornament.png",
+        "pink-ornament.png",
+        "white-ornament.png",
+        "brown-ornament.png",
+        "year-current-ornament.png",
+        "party-ornament.png"
+    ];
+
+    var candyCaneArray = [
+        "red-candy-cane-right.png",
+        "red-candy-cane-left.png",
+        "green-candy-cane-right.png",
+        "green-candy-cane-left.png",
+        "red-green-candy-cane-right.png",
+        "red-green-candy-cane-left.png",
+        "pink-candy-cane-right.png",
+        "pink-candy-cane-left.png",
+        "yellow-candy-cane-right.png",
+        "yellow-candy-cane-left.png",
+        "pink-yellow-candy-cane-right.png",
+        "pink-yellow-candy-cane-left.png"
+    ];
+
+    var flowerArray = [
+        "red-poinsettia.png",
+        "yellow-poinsettia.png",
+        "cyan-poinsettia.png",
+        "blue-poinsettia.png",
+        "purple-poinsettia.png",
+        "pink-poinsettia.png",
+        "white-poinsettia.png"
+    ];
+
+    var topperArray = [
+        "star1.png",
+        "star2.png",
+        "star3.png",
+        "star4.png",
+        "bow.png"
+    ];
+
+    var presentArray = [
+        "red-present.png",
+        "red-present.png",
+        "red-present-long.png",
+        "red-present-tall.png",
+        "yellow-present.png",
+        "yellow-present.png",
+        "yellow-present-long.png",
+        "yellow-present-tall.png",
+        "green-present.png",
+        "green-present.png",
+        "green-present-long.png",
+        "green-present-tall.png",
+        "blue-present.png",
+        "blue-present.png",
+        "blue-present-long.png",
+        "blue-present-tall.png",
+        "dark-blue-present.png",
+        "dark-blue-present.png",
+        "dark-blue-present-long.png",
+        "dark-blue-present-tall.png",
+        "purple-present.png",
+        "purple-present.png",
+        "purple-present-long.png",
+        "purple-present-tall.png"
+    ];
+
+    window.onload = function () {
+        ctx.drawImage(tree, (canvas.width / 2) - (document.getElementById("tree").width / 2), (canvas.height / 2) - (document.getElementById("tree").height / 2), 600, 900);
+    }
+
+    canvas.addEventListener('click', function (event) {
+        let x = event.pageX - canvas.offsetLeft;
+        let y = event.pageY - canvas.offsetTop;
+
+        if (decor == "orn") {
+            var o = ornamentArray[Math.floor(Math.random() * ornamentArray.length)];
+            const ornament = document.getElementById(o);
+
+            ctx.drawImage(ornament, x - 30, y - 30, 60, 60);
+
+        } else if (decor == "cane") {
+            var c = candyCaneArray[Math.floor(Math.random() * candyCaneArray.length)];
+            const candyCane = document.getElementById(c);
+
+            ctx.drawImage(candyCane, x - 30, y - 30, 60, 60);
+
+        } else if (decor == "flower") {
+            var f = flowerArray[Math.floor(Math.random() * flowerArray.length)];
+            const flower = document.getElementById(f);
+
+            ctx.drawImage(flower, x - 30, y - 30, 60, 60);
+
+        } else if (decor == "top") {
+            var t = topperArray[Math.floor(Math.random() * topperArray.length)];
+            const topper = document.getElementById(t);
+
+            if (t.includes("bow")) {
+                ctx.drawImage(topper, x - 40, y - 30, 80, 80);
+            } else {
+                ctx.drawImage(topper, x - 30, y - 30, 60, 60);
+            }
+
+        } else if (decor == "pres") {
+            var p = presentArray[Math.floor(Math.random() * presentArray.length)];
+            const present = document.getElementById(p);
+
+            if (p.includes("long")) {
+                ctx.drawImage(present, x - 50, y - 42, 96, 68);
+
+            } else if (p.includes("tall")) {
+                ctx.drawImage(present, x - 26, y - 60, 52, 96);
+
+            } else {
+                ctx.drawImage(present, x - 40, y - 50, 80, 80);
+            }
+        }
+
+    }, false);
+
+    function openMain() {
+        window.open("https://jorch.xyz", "_blank");
+    }
+
+    function openSupp() {
+        window.open("https://discord.gg/7y4dpMy", "_blank");
+    }
+
+</script>
+
+</html>
