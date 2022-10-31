@@ -1,174 +1,90 @@
-<!DOCTYPE html>
-
 <html>
 
 <head>
     <title>Decorate a Tree</title>
-    <link href='style.css' rel='stylesheet'>
-    <link rel='icon' type='image/x-icon' href='candy-cane-red-left.png'>
-    <link href='https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap' rel='stylesheet'>
-    <script src='https://kit.fontawesome.com/57c0dd6a0a.js' crossorigin='anonymous'></script>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
 </head>
 
-<!-- npm run start -->
+<body>
 
-<body class='bg-white h-full overflow-hidden m-0'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-
-    <div id='modal' class='hidden bg-black/50 fixed top-0 left-0 z-50 w-full h-full overflow-auto'>
-        <div class='text-3xl bg-slate-100 rounded-lg w-fit px-10 py-9 m-auto mt-48'>
-            <h1 class='button border-none bg-transparent'>Decorate a Tree works better on larger screens. Consider
-                switching to a different device.</h1>
-            <button onclick='closeModal();' class='button border-l-[2.5px] rounded-md mt-3'>I don't care</button>
-        </div>
+    <div id="decorButtons">
+        <button onclick="switchO();" id="switchO" class="decorB toggled">Ornaments</button>
+        <button onclick="switchC();" id="switchC" class="decorB">Candy Canes</button>
+        <button onclick="switchF();" id="switchF" class="decorB">Flowers</button>
+        <button onclick="switchT();" id="switchT" class="decorB">Toppers</button>
+        <button onclick="switchP();" id="switchP" class="decorB">Presents</button>
     </div>
 
-    <div id='decorDock' class='overflow-auto'>
-        <button onclick='switchO();' id='switchO'
-            class='button decorB float-left border-l-[2.5px] bg-lightGreen'>Ornaments</button>
-        <button onclick='switchC();' id='switchC' class='button decorB float-left'>Candy Canes</button>
-        <button onclick='switchF();' id='switchF' class='button decorB float-left'>Flowers</button>
-        <button onclick='switchL();' id='switchL' class='button decorB float-left'>Lights</button>
-        <button onclick='switchT();' id='switchT' class='button decorB float-left'>Toppers</button>
-        <button onclick='switchP();' id='switchP'
-            class='button decorB float-left md:rounded-tr-md md:rounded-br-md'>Presents</button>
-
-        <button onclick='setBg();' id='switchBg' class='button float-left md:float-right'>Background</button>
-        <button onclick='switchG();' id='switchG' class='button float-left md:float-right'>Garland</button>
-        <button onclick='switchTr();' id='switchTr'
-            class='button float-left md:float-right md:rounded-tl-md md:rounded-bl-md md:border-l-[2.5px]'>Trees</button>
+    <div id="linkButtons">
+        <button onclick="openSupp();" id="openS" class="linkB">Support</button>
+        <button onclick="openMain();" id="openM" class="linkB">Jorch.xyz</button>
     </div>
 
-    <div class='relative'>
+    <canvas id="canvas">
+        <img id="tree" width="600" height="900" src="tree.png">
 
-        <canvas id='canvas3' class='absolute top-0 left-0 z-20'>
-            <img id='tree-red.png' width='600' height='900' src='tree-red.png'>
-            <img id='tree-yellow.png' width='600' height='900' src='tree-yellow.png'>
-            <img id='tree' width='600' height='900' src='tree.png'>
-            <img id='tree-blue.png' width='600' height='900' src='tree-blue.png'>
-            <img id='tree-pink.png' width='600' height='900' src='tree-pink.png'>
-            <img id='tree-white.png' width='600' height='900' src='tree-white.png'>
-        </canvas>
+        <img id="red-ornament.png" width="60" height="60" src="red-ornament.png">
+        <img id="orange-ornament.png" width="60" height="60" src="orange-ornament.png">
+        <img id="yellow-ornament.png" width="60" height="60" src="yellow-ornament.png">
+        <img id="green-ornament.png" width="60" height="60" src="green-ornament.png">
+        <img id="cyan-ornament.png" width="60" height="60" src="cyan-ornament.png">
+        <img id="old-blue-ornament-3.png" width="60" height="60" src="old-blue-ornament-3.png">
+        <img id="purple-ornament.png" width="60" height="60" src="purple-ornament.png">
+        <img id="pink-ornament.png" width="60" height="60" src="pink-ornament.png">
+        <img id="white-ornament.png" width="60" height="60" src="white-ornament.png">
+        <img id="brown-ornament.png" width="60" height="60" src="brown-ornament.png">
+        <img id="year-current-ornament.png" width="60" height="60" src="year-current-ornament.png">
+        <img id="party-ornament.png" width="60" height="60" src="party-ornament.png">
 
-        <canvas id='canvas2' class='absolute top-0 left-0 z-30'>
-            <img id='garland-red.png' width='600' height='900' src='garland-red.png'>
-            <img id='garland-red-and-green.png' width='600' height='900' src='garland-red-and-green.png'>
-            <img id='garland-red-and-white.png' width='600' height='900' src='garland-red-and-white.png'>
-            <img id='garland-yellow.png' width='600' height='900' src='garland-yellow.png'>
-            <img id='garland-yellow-and-white.png' width='600' height='900' src='garland-yellow-and-white.png'>
-            <img id='garland-green.png' width='600' height='900' src='garland-green.png'>
-            <img id='garland-green-and-white.png' width='600' height='900' src='garland-green-and-white.png'>
-            <img id='garland-blue.png' width='600' height='900' src='garland-blue.png'>
-            <img id='garland-blue-and-white.png' width='600' height='900' src='garland-blue-and-white.png'>
-            <img id='garland-pink.png' width='600' height='900' src='garland-pink.png'>
-            <img id='garland-pink-and-white.png' width='600' height='900' src='garland-pink-and-white.png'>
-            <img id='garland-white.png' width='600' height='900' src='garland-white.png'>
-        </canvas>
+        <img id="red-candy-cane-right.png" width="60" height="60" src="red-candy-cane-right.png">
+        <img id="red-candy-cane-left.png" width="60" height="60" src="red-candy-cane-left.png">
+        <img id="green-candy-cane-right.png" width="60" height="60" src="green-candy-cane-right.png">
+        <img id="green-candy-cane-left.png" width="60" height="60" src="green-candy-cane-left.png">
+        <img id="red-green-candy-cane-right.png" width="60" height="60" src="red-green-candy-cane-right.png">
+        <img id="red-green-candy-cane-left.png" width="60" height="60" src="red-green-candy-cane-left.png">
+        <img id="pink-candy-cane-right.png" width="60" height="60" src="pink-candy-cane-right.png">
+        <img id="pink-candy-cane-left.png" width="60" height="60" src="pink-candy-cane-left.png">
+        <img id="yellow-candy-cane-right.png" width="60" height="60" src="yellow-candy-cane-right.png">
+        <img id="yellow-candy-cane-left.png" width="60" height="60" src="yellow-candy-cane-left.png">
+        <img id="pink-yellow-candy-cane-right.png" width="60" height="60" src="pink-yellow-candy-cane-right.png">
+        <img id="pink-yellow-candy-cane-left.png" width="60" height="60" src="pink-yellow-candy-cane-left.png">
 
-        <canvas id='canvas' class='absolute top-0 left-0 z-40 cursor-pointer'>
-            <img id='ornament-red.png' width='60' height='60' src='ornament-red.png'>
-            <img id='ornament-orange.png' width='60' height='60' src='ornament-orange.png'>
-            <img id='ornament-yellow.png' width='60' height='60' src='ornament-yellow.png'>
-            <img id='ornament-chartreuse.png' width='60' height='60' src='ornament-chartreuse.png'>
-            <img id='ornament-green.png' width='60' height='60' src='ornament-green.png'>
-            <img id='ornament-lime.png' width='60' height='60' src='ornament-lime.png'>
-            <img id='ornament-cyan.png' width='60' height='60' src='ornament-cyan.png'>
-            <img id='ornament-blue.png' width='60' height='60' src='ornament-blue.png'>
-            <img id='ornament-purple.png' width='60' height='60' src='ornament-purple.png'>
-            <img id='ornament-pink.png' width='60' height='60' src='ornament-pink.png'>
-            <img id='ornament-white.png' width='60' height='60' src='ornament-white.png'>
-            <img id='ornament-brown.png' width='60' height='60' src='ornament-brown.png'>
-            <img id='ornament-silver.png' width='60' height='60' src='ornament-silver.png'>
-            <img id='ornament-year-current.png' width='60' height='60' src='ornament-year-current.png'>
-            <img id='ornament-party.png' width='60' height='60' src='ornament-party.png'>
-            <img id='ornament-sparkling-red.png' width='60' height='60' src='ornament-sparkling-red.png'>
-            <img id='ornament-sparkling-gold.png' width='60' height='60' src='ornament-sparkling-gold.png'>
-            <img id='ornament-sparkling-blue.png' width='60' height='60' src='ornament-sparkling-blue.png'>
-            <img id='ornament-sparkling-white.png' width='60' height='60' src='ornament-sparkling-white.png'>
+        <img id="red-poinsettia.png" width="60" height="60" src="red-poinsettia.png">
+        <img id="yellow-poinsettia.png" width="60" height="60" src="yellow-poinsettia.png">
+        <img id="cyan-poinsettia.png" width="60" height="60" src="cyan-poinsettia.png">
+        <img id="blue-poinsettia.png" width="60" height="60" src="blue-poinsettia.png">
+        <img id="purple-poinsettia.png" width="60" height="60" src="purple-poinsettia.png">
+        <img id="pink-poinsettia.png" width="60" height="60" src="pink-poinsettia.png">
+        <img id="white-poinsettia.png" width="60" height="60" src="white-poinsettia.png">
 
-            <img id='candy-cane-red-right.png' width='60' height='60' src='candy-cane-red-right.png'>
-            <img id='candy-cane-red-left.png' width='60' height='60' src='candy-cane-red-left.png'>
-            <img id='candy-cane-green-right.png' width='60' height='60' src='candy-cane-green-right.png'>
-            <img id='candy-cane-green-left.png' width='60' height='60' src='candy-cane-green-left.png'>
-            <img id='candy-cane-red-green-right.png' width='60' height='60' src='candy-cane-red-green-right.png'>
-            <img id='candy-cane-red-green-left.png' width='60' height='60' src='candy-cane-red-green-left.png'>
-            <img id='candy-cane-pink-right.png' width='60' height='60' src='candy-cane-pink-right.png'>
-            <img id='candy-cane-pink-left.png' width='60' height='60' src='candy-cane-pink-left.png'>
-            <img id='candy-cane-yellow-right.png' width='60' height='60' src='candy-cane-yellow-right.png'>
-            <img id='candy-cane-yellow-left.png' width='60' height='60' src='candy-cane-yellow-left.png'>
-            <img id='candy-cane-pink-yellow-right.png' width='60' height='60' src='candy-cane-pink-yellow-right.png'>
-            <img id='candy-cane-pink-yellow-left.png' width='60' height='60' src='candy-cane-pink-yellow-left.png'>
-            <img id='candy-cane-rainbow-right.png' width='60' height='60' src='candy-cane-rainbow-right.png'>
-            <img id='candy-cane-rainbow-left.png' width='60' height='60' src='candy-cane-rainbow-left.png'>
+        <img id="gold-star1.png" width="60" height="60" src="gold-star1.png">
+        <img id="gold-star2.png" width="60" height="60" src="gold-star2.png">
+        <img id="gold-star3.png" width="60" height="60" src="gold-star3.png">
+        <img id="gold-star4.png" width="60" height="60" src="gold-star4.png">
+        <img id="red-bow.png" width="80" height="80" src="red-bow.png">
 
-            <img id='poinsettia-red.png' width='60' height='60' src='poinsettia-red.png'>
-            <img id='poinsettia-orange.png' width='60' height='60' src='poinsettia-orange.png'>
-            <img id='poinsettia-yellow.png' width='60' height='60' src='poinsettia-yellow.png'>
-            <img id='poinsettia-cyan.png' width='60' height='60' src='poinsettia-cyan.png'>
-            <img id='poinsettia-blue.png' width='60' height='60' src='poinsettia-blue.png'>
-            <img id='poinsettia-purple.png' width='60' height='60' src='poinsettia-purple.png'>
-            <img id='poinsettia-pink.png' width='60' height='60' src='poinsettia-pink.png'>
-            <img id='poinsettia-white.png' width='60' height='60' src='poinsettia-white.png'>
-            <img id='hibiscus-red.png' width='60' height='60' src='hibiscus-red.png'>
-            <img id='hibiscus-orange.png' width='60' height='60' src='hibiscus-orange.png'>
-            <img id='hibiscus-yellow.png' width='60' height='60' src='hibiscus-yellow.png'>
-            <img id='hibiscus-cyan.png' width='60' height='60' src='hibiscus-cyan.png'>
-            <img id='hibiscus-blue.png' width='60' height='60' src='hibiscus-blue.png'>
-            <img id='hibiscus-purple.png' width='60' height='60' src='hibiscus-purple.png'>
-            <img id='hibiscus-pink.png' width='60' height='60' src='hibiscus-pink.png'>
-            <img id='hibiscus-white.png' width='60' height='60' src='hibiscus-white.png'>
-
-            <img id='light-red.png' width='27' height='30' src='light-red.png'>
-            <img id='light-orange.png' width='27' height='30' src='light-orange.png'>
-            <img id='light-yellow.png' width='27' height='30' src='light-yellow.png'>
-            <img id='light-green.png' width='27' height='30' src='light-green.png'>
-            <img id='light-cyan.png' width='27' height='30' src='light-cyan.png'>
-            <img id='light-blue.png' width='27' height='30' src='light-blue.png'>
-            <img id='light-purple.png' width='27' height='30' src='light-purple.png'>
-            <img id='light-pink.png' width='27' height='30' src='light-pink.png'>
-            <img id='light-white.png' width='27' height='30' src='light-white.png'>
-
-            <img id='star-gold-1.png' width='60' height='60' src='star-gold-1.png'>
-            <img id='star-gold-2.png' width='60' height='60' src='star-gold-2.png'>
-            <img id='star-gold-3.png' width='60' height='60' src='star-gold-3.png'>
-            <img id='star-gold-4.png' width='60' height='60' src='star-gold-4.png'>
-            <img id='star-red-1.png' width='60' height='60' src='star-red-1.png'>
-            <img id='star-red-2.png' width='60' height='60' src='star-red-2.png'>
-            <img id='star-red-3.png' width='60' height='60' src='star-red-3.png'>
-            <img id='star-red-4.png' width='60' height='60' src='star-red-4.png'>
-            <img id='star-white-1.png' width='60' height='60' src='star-white-1.png'>
-            <img id='star-white-2.png' width='60' height='60' src='star-white-2.png'>
-            <img id='star-white-3.png' width='60' height='60' src='star-white-3.png'>
-            <img id='star-white-4.png' width='60' height='60' src='star-white-4.png'>
-            <img id='bow-red.png' width='80' height='80' src='bow-red.png'>
-            <img id='bow-gold.png' width='80' height='80' src='bow-gold.png'>
-            <img id='bow-white.png' width='80' height='80' src='bow-white.png'>
-            <img id='finial-white.png' width='80' height='80' src='finial-white.png'>
-            <img id='finial-gold.png' width='80' height='80' src='finial-gold.png'>
-            <img id='finial-red.png' width='80' height='80' src='finial-red.png'>
-
-            <img id='present-red.png' width='80' height='80' src='present-red.png'>
-            <img id='present-red-long.png' width='96' height='68' src='present-red-long.png'>
-            <img id='present-red-tall.png' width='52' height='96' src='present-red-tall.png'>
-            <img id='present-yellow.png' width='80' height='80' src='present-yellow.png'>
-            <img id='present-yellow-long.png' width='96' height='68' src='present-yellow-long.png'>
-            <img id='present-yellow-tall.png' width='52' height='96' src='present-yellow-tall.png'>
-            <img id='present-green.png' width='80' height='80' src='present-green.png'>
-            <img id='present-green-long.png' width='96' height='68' src='present-green-long.png'>
-            <img id='present-green-tall.png' width='52' height='96' src='present-green-tall.png'>
-            <img id='present-blue.png' width='80' height='80' src='present-blue.png'>
-            <img id='present-blue-long.png' width='96' height='68' src='present-blue-long.png'>
-            <img id='present-blue-tall.png' width='52' height='96' src='present-blue-tall.png'>
-            <img id='present-dark-blue.png' width='80' height='80' src='present-dark-blue.png'>
-            <img id='present-dark-blue-long.png' width='96' height='68' src='present-dark-blue-long.png'>
-            <img id='present-dark-blue-tall.png' width='52' height='96' src='present-dark-blue-tall.png'>
-            <img id='present-purple.png' width='80' height='80' src='present-purple.png'>
-            <img id='present-purple-long.png' width='96' height='68' src='present-purple-long.png'>
-            <img id='present-purple-tall.png' width='52' height='96' src='present-purple-tall.png'>
-        </canvas>
-
-    </div>
+        <img id="red-present.png" width="80" height="80" src="red-present.png">
+        <img id="red-present-long.png" width="96" height="68" src="red-present-long.png">
+        <img id="red-present-tall.png" width="52" height="96" src="red-present-tall.png">
+        <img id="yellow-present.png" width="80" height="80" src="yellow-present.png">
+        <img id="yellow-present-long.png" width="96" height="68" src="yellow-present-long.png">
+        <img id="yellow-present-tall.png" width="52" height="96" src="yellow-present-tall.png">
+        <img id="green-present.png" width="80" height="80" src="green-present.png">
+        <img id="green-present-long.png" width="96" height="68" src="green-present-long.png">
+        <img id="green-present-tall.png" width="52" height="96" src="green-present-tall.png">
+        <img id="blue-present.png" width="80" height="80" src="blue-present.png">
+        <img id="blue-present-long.png" width="96" height="68" src="blue-present-long.png">
+        <img id="blue-present-tall.png" width="52" height="96" src="blue-present-tall.png">
+        <img id="dark-blue-present.png" width="80" height="80" src="dark-blue-present.png">
+        <img id="dark-blue-present-long.png" width="96" height="68" src="dark-blue-present-long.png">
+        <img id="dark-blue-present-tall.png" width="52" height="96" src="dark-blue-present-tall.png">
+        <img id="purple-present.png" width="80" height="80" src="purple-present.png">
+        <img id="purple-present-long.png" width="96" height="68" src="purple-present-long.png">
+        <img id="purple-present-tall.png" width="52" height="96" src="purple-present-tall.png">
+    </canvas>
 
 </body>
 
