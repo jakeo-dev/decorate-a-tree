@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .button {
+    @apply flex text-lg md:text-2xl bg-slate-200/90 text-red-500 border-[2.5px] border-slate-400/90 border-l-0 transition-all hover:enabled:bg-red-200/90 decoration-transparent px-2 py-1 md:px-4 md:py-3 m-0 cursor-pointer font-BalsamiqSans;
+  }
+
+  .selectDecor {
+    @apply inline-block md:block rounded-md border-[2.5px] border-transparent hover:border-slate-400/80 p-2 mx-auto mt-3 transition-all hover:enabled:bg-red-200/90;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(100 116 139); /* slate 500 */
+  border-radius: 6px; /* rounded-md */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(71 85 105); /* slate 600 */
+}

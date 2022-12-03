@@ -1,90 +1,578 @@
+<!DOCTYPE html>
+
 <html>
 
 <head>
-    <title>Decorate a Tree</title>
-    <link href="style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+        <title>Decorate a Tree</title>
+        <link href='style.css' rel='stylesheet'>
+        <link rel='icon' type='image/x-icon' href='candy-cane-red-left.png'>
+        <link href='https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap' rel='stylesheet'>
+        <script src='https://kit.fontawesome.com/57c0dd6a0a.js' crossorigin='anonymous'></script>
+        <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/tota11y/0.1.6/tota11y.min.js' crossorigin='anonymous'
+                referrerpolicy='no-referrer'></script> -->
+
+        <meta property='og:title' content='Decorate a Tree'>
+        <meta property='og:description' content='Decorate your own digital Christmas tree'>
+        <meta name='theme-color' content='#227322'>
 </head>
 
-<body>
+<body class='bg-white font-BalsamiqSans h-full overflow-hidden m-0'>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
-    <div id="decorButtons">
-        <button onclick="switchO();" id="switchO" class="decorB toggled">Ornaments</button>
-        <button onclick="switchC();" id="switchC" class="decorB">Candy Canes</button>
-        <button onclick="switchF();" id="switchF" class="decorB">Flowers</button>
-        <button onclick="switchT();" id="switchT" class="decorB">Toppers</button>
-        <button onclick="switchP();" id="switchP" class="decorB">Presents</button>
-    </div>
+        <div id='modal' class='hidden bg-black/50 fixed top-0 left-0 z-50 w-full h-full overflow-auto'>
+                <div class='text-3xl bg-slate-100 rounded-lg w-fit px-10 py-9 m-auto mt-48'>
+                        <h1 class='flex bg-transparent text-lg md:text-2xl text-red-500'>
+                                Decorate a Tree works better on larger screens.
+                                Consider switching to a different device.</h1>
+                        <button onclick='closeModal();' class='button border-l-[2.5px] rounded-md mt-3'>I don't
+                                care</button>
+                </div>
+        </div>
 
-    <div id="linkButtons">
-        <button onclick="openSupp();" id="openS" class="linkB">Support</button>
-        <button onclick="openMain();" id="openM" class="linkB">Jorch.xyz</button>
-    </div>
+        <!-- <a class='absolute bottom-3 right-4 text-lg cursor-pointer z-40 hover:underline'
+                href='https://discord.gg/thPuUCMxtg' target='_blank'>Feedback</a> -->
 
-    <canvas id="canvas">
-        <img id="tree" width="600" height="900" src="tree.png">
+        <div id='decorDock' class='absolute w-full overflow-x-auto z-40'>
+                <button onclick='switchO();' id='switchO'
+                        class='button decorB float-left border-l-[2.5px] md:bg-lightGreen/90 md:border-slate-400/90'>Ornaments</button>
+                <button onclick='switchC();' id='switchC' class='button decorB float-left'>Candy Canes</button>
+                <button onclick='switchF();' id='switchF' class='button decorB float-left'>Flowers</button>
+                <button onclick='switchL();' id='switchL' class='button decorB float-left'>Lights</button>
+                <button onclick='switchP();' id='switchP' class='button decorB float-left'>Presents</button>
+                <button onclick='switchT();' id='switchT'
+                        class='button decorB float-left md:rounded-tr-md md:rounded-br-md'>Toppers</button>
 
-        <img id="red-ornament.png" width="60" height="60" src="red-ornament.png">
-        <img id="orange-ornament.png" width="60" height="60" src="orange-ornament.png">
-        <img id="yellow-ornament.png" width="60" height="60" src="yellow-ornament.png">
-        <img id="green-ornament.png" width="60" height="60" src="green-ornament.png">
-        <img id="cyan-ornament.png" width="60" height="60" src="cyan-ornament.png">
-        <img id="old-blue-ornament-3.png" width="60" height="60" src="old-blue-ornament-3.png">
-        <img id="purple-ornament.png" width="60" height="60" src="purple-ornament.png">
-        <img id="pink-ornament.png" width="60" height="60" src="pink-ornament.png">
-        <img id="white-ornament.png" width="60" height="60" src="white-ornament.png">
-        <img id="brown-ornament.png" width="60" height="60" src="brown-ornament.png">
-        <img id="year-current-ornament.png" width="60" height="60" src="year-current-ornament.png">
-        <img id="party-ornament.png" width="60" height="60" src="party-ornament.png">
+                <button onclick='switchBg();' id='switchBg' class='button float-left md:float-right'>Background</button>
+                <button onclick='switchG();' id='switchG' class='button float-left md:float-right'>Garland</button>
+                <button onclick='switchTr();' id='switchTr'
+                        class='button float-left md:float-right md:rounded-tl-md md:rounded-bl-md md:border-l-[2.5px]'>Trees</button>
+        </div>
 
-        <img id="red-candy-cane-right.png" width="60" height="60" src="red-candy-cane-right.png">
-        <img id="red-candy-cane-left.png" width="60" height="60" src="red-candy-cane-left.png">
-        <img id="green-candy-cane-right.png" width="60" height="60" src="green-candy-cane-right.png">
-        <img id="green-candy-cane-left.png" width="60" height="60" src="green-candy-cane-left.png">
-        <img id="red-green-candy-cane-right.png" width="60" height="60" src="red-green-candy-cane-right.png">
-        <img id="red-green-candy-cane-left.png" width="60" height="60" src="red-green-candy-cane-left.png">
-        <img id="pink-candy-cane-right.png" width="60" height="60" src="pink-candy-cane-right.png">
-        <img id="pink-candy-cane-left.png" width="60" height="60" src="pink-candy-cane-left.png">
-        <img id="yellow-candy-cane-right.png" width="60" height="60" src="yellow-candy-cane-right.png">
-        <img id="yellow-candy-cane-left.png" width="60" height="60" src="yellow-candy-cane-left.png">
-        <img id="pink-yellow-candy-cane-right.png" width="60" height="60" src="pink-yellow-candy-cane-right.png">
-        <img id="pink-yellow-candy-cane-left.png" width="60" height="60" src="pink-yellow-candy-cane-left.png">
+        <div id='decorSelector'
+                class='hidden md:block bg-slate-200/90 border-x-[2.5px] md:border-slate-400/90 absolute h-full overflow-y-auto z-40 px-3'>
 
-        <img id="red-poinsettia.png" width="60" height="60" src="red-poinsettia.png">
-        <img id="yellow-poinsettia.png" width="60" height="60" src="yellow-poinsettia.png">
-        <img id="cyan-poinsettia.png" width="60" height="60" src="cyan-poinsettia.png">
-        <img id="blue-poinsettia.png" width="60" height="60" src="blue-poinsettia.png">
-        <img id="purple-poinsettia.png" width="60" height="60" src="purple-poinsettia.png">
-        <img id="pink-poinsettia.png" width="60" height="60" src="pink-poinsettia.png">
-        <img id="white-poinsettia.png" width="60" height="60" src="white-poinsettia.png">
+                <button class='md:hidden absolute top-0 right-0 m-5' onclick='closeSelector();'><i
+                                class='fa-solid fa-xmark' aria-label='Close' title='Close'></i></button>
 
-        <img id="gold-star1.png" width="60" height="60" src="gold-star1.png">
-        <img id="gold-star2.png" width="60" height="60" src="gold-star2.png">
-        <img id="gold-star3.png" width="60" height="60" src="gold-star3.png">
-        <img id="gold-star4.png" width="60" height="60" src="gold-star4.png">
-        <img id="red-bow.png" width="80" height="80" src="red-bow.png">
+                <button class='selectDecor text-slate-700 bg-lightGreen/90 border-slate-400/90' id='random'
+                        onclick='select("random.png");'>
+                        <i class='fa-solid fa-shuffle fa-3x' aria-label='Random decoration'
+                                title='Random decoration'></i>
+                </button>
 
-        <img id="red-present.png" width="80" height="80" src="red-present.png">
-        <img id="red-present-long.png" width="96" height="68" src="red-present-long.png">
-        <img id="red-present-tall.png" width="52" height="96" src="red-present-tall.png">
-        <img id="yellow-present.png" width="80" height="80" src="yellow-present.png">
-        <img id="yellow-present-long.png" width="96" height="68" src="yellow-present-long.png">
-        <img id="yellow-present-tall.png" width="52" height="96" src="yellow-present-tall.png">
-        <img id="green-present.png" width="80" height="80" src="green-present.png">
-        <img id="green-present-long.png" width="96" height="68" src="green-present-long.png">
-        <img id="green-present-tall.png" width="52" height="96" src="green-present-tall.png">
-        <img id="blue-present.png" width="80" height="80" src="blue-present.png">
-        <img id="blue-present-long.png" width="96" height="68" src="blue-present-long.png">
-        <img id="blue-present-tall.png" width="52" height="96" src="blue-present-tall.png">
-        <img id="dark-blue-present.png" width="80" height="80" src="dark-blue-present.png">
-        <img id="dark-blue-present-long.png" width="96" height="68" src="dark-blue-present-long.png">
-        <img id="dark-blue-present-tall.png" width="52" height="96" src="dark-blue-present-tall.png">
-        <img id="purple-present.png" width="80" height="80" src="purple-present.png">
-        <img id="purple-present-long.png" width="96" height="68" src="purple-present-long.png">
-        <img id="purple-present-tall.png" width="52" height="96" src="purple-present-tall.png">
-    </canvas>
+                <hr class='border-slate-400/90 border-[1.5px] m-2 w-5/6'>
+
+                <div id='ornDiv' class='dDiv block'>
+                        <button class='selectDecor' id='ornament-red' onclick='select("ornament-red.png");'> <img
+                                        id='ornament-red.png' width='60' height='60' src='ornament-red.png'
+                                        alt='Red ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-orange' onclick='select("ornament-orange.png");'> <img
+                                        id='ornament-orange.png' width='60' height='60' src='ornament-orange.png'
+                                        alt='Orange ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-yellow' onclick='select("ornament-yellow.png");'> <img
+                                        id='ornament-yellow.png' width='60' height='60' src='ornament-yellow.png'
+                                        alt='Yellow ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-chartreuse'
+                                onclick='select("ornament-chartreuse.png");'> <img id='ornament-chartreuse.png'
+                                        width='60' height='60' src='ornament-chartreuse.png' alt='Chartreuse ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-green' onclick='select("ornament-green.png");'> <img
+                                        id='ornament-green.png' width='60' height='60' src='ornament-green.png'
+                                        alt='Green ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-lime' onclick='select("ornament-lime.png");'> <img
+                                        id='ornament-lime.png' width='60' height='60' src='ornament-lime.png'
+                                        alt='Lime ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-cyan' onclick='select("ornament-cyan.png");'> <img
+                                        id='ornament-cyan.png' width='60' height='60' src='ornament-cyan.png'
+                                        alt='Cyan ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-blue' onclick='select("ornament-blue.png");'> <img
+                                        id='ornament-blue.png' width='60' height='60' src='ornament-blue.png'
+                                        alt='Blue ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-purple' onclick='select("ornament-purple.png");'> <img
+                                        id='ornament-purple.png' width='60' height='60' src='ornament-purple.png'
+                                        alt='Purple ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-pink' onclick='select("ornament-pink.png");'> <img
+                                        id='ornament-pink.png' width='60' height='60' src='ornament-pink.png'
+                                        alt='Pink ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-party' onclick='select("ornament-party.png");'> <img
+                                        id='ornament-party.png' width='60' height='60' src='ornament-party.png'
+                                        alt='Party ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-white' onclick='select("ornament-white.png");'> <img
+                                        id='ornament-white.png' width='60' height='60' src='ornament-white.png'
+                                        alt='White ornament'>
+                        </button>
+
+                        <button class='selectDecor' id='ornament-silver' onclick='select("ornament-silver.png");'> <img
+                                        id='ornament-silver.png' width='60' height='60' src='ornament-silver.png'
+                                        alt='Silver ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-brown' onclick='select("ornament-brown.png");'> <img
+                                        id='ornament-brown.png' width='60' height='60' src='ornament-brown.png'
+                                        alt='Brown ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-year-current'
+                                onclick='select("ornament-year-current.png");'> <img id='ornament-year-current.png'
+                                        width='60' height='60' src='ornament-year-current.png'
+                                        alt="New year's ornament"> </button>
+                        <button class='selectDecor' id='ornament-red-and-gold'
+                                onclick='select("ornament-red-and-gold.png");'>
+                                <img id='ornament-red-and-gold.png' width='60' height='60'
+                                        src='ornament-red-and-gold.png' alt='Red and gold ornament'> </button>
+                        <button class='selectDecor' id='ornament-red-and-white'
+                                onclick='select("ornament-red-and-white.png");'>
+                                <img id='ornament-red-and-white.png' width='60' height='60'
+                                        src='ornament-red-and-white.png' alt='Red and white ornament'> </button>
+                        <button class='selectDecor' id='ornament-gold-and-white'
+                                onclick='select("ornament-gold-and-white.png");'>
+                                <img id='ornament-gold-and-white.png' width='60' height='60'
+                                        src='ornament-gold-and-white.png' alt='Gold and white ornament'> </button>
+                        <button class='selectDecor' id='ornament-sparkling-red'
+                                onclick='select("ornament-sparkling-red.png");'>
+                                <img id='ornament-sparkling-red.png' width='60' height='60'
+                                        src='ornament-sparkling-red.png' alt='Sparkling red ornament'> </button>
+                        <button class='selectDecor' id='ornament-sparkling-orange'
+                                onclick='select("ornament-sparkling-orange.png");'>
+                                <img id='ornament-sparkling-orange.png' width='60' height='60'
+                                        src='ornament-sparkling-orange.png' alt='Sparkling orange ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-sparkling-gold'
+                                onclick='select("ornament-sparkling-gold.png");'>
+                                <img id='ornament-sparkling-gold.png' width='60' height='60'
+                                        src='ornament-sparkling-gold.png' alt='Sparkling gold ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-sparkling-green'
+                                onclick='select("ornament-sparkling-green.png");'>
+                                <img id='ornament-sparkling-green.png' width='60' height='60'
+                                        src='ornament-sparkling-green.png' alt='Sparkling green ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-sparkling-blue'
+                                onclick='select("ornament-sparkling-blue.png");'>
+                                <img id='ornament-sparkling-blue.png' width='60' height='60'
+                                        src='ornament-sparkling-blue.png' alt='Sparkling blue ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-sparkling-purple'
+                                onclick='select("ornament-sparkling-purple.png");'>
+                                <img id='ornament-sparkling-purple.png' width='60' height='60'
+                                        src='ornament-sparkling-purple.png' alt='Sparkling purple ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-sparkling-pink'
+                                onclick='select("ornament-sparkling-pink.png");'>
+                                <img id='ornament-sparkling-pink.png' width='60' height='60'
+                                        src='ornament-sparkling-pink.png' alt='Sparkling pink ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-sparkling-white'
+                                onclick='select("ornament-sparkling-white.png");'>
+                                <img id='ornament-sparkling-white.png' width='60' height='60'
+                                        src='ornament-sparkling-white.png' alt='Sparkling white ornament'>
+                        </button>
+                </div>
+
+                <div id='caneDiv' class='dDiv hidden'>
+                        <button class='selectDecor' id='candy-cane-red-right'
+                                onclick='select("candy-cane-red-right.png");'> <img id='candy-cane-red-right.png'
+                                        width='60' height='60' src='candy-cane-red-right.png'
+                                        alt='Red candy cane (right)'> </button>
+                        <button class='selectDecor' id='candy-cane-red-left'
+                                onclick='select("candy-cane-red-left.png");'> <img id='candy-cane-red-left.png'
+                                        width='60' height='60' src='candy-cane-red-left.png'
+                                        alt='Red candy cane (left)'> </button>
+                        <button class='selectDecor' id='candy-cane-green-right'
+                                onclick='select("candy-cane-green-right.png");'>
+                                <img id='candy-cane-green-right.png' width='60' height='60'
+                                        src='candy-cane-green-right.png' alt='Green candy cane (right)'> </button>
+                        <button class='selectDecor' id='candy-cane-green-left'
+                                onclick='select("candy-cane-green-left.png");'> <img id='candy-cane-green-left.png'
+                                        width='60' height='60' src='candy-cane-green-left.png'
+                                        alt='Green candy cane (left)'> </button>
+                        <button class='selectDecor' id='candy-cane-red-green-right'
+                                onclick='select("candy-cane-red-green-right.png");'>
+                                <img id='candy-cane-red-green-right.png' width='60' height='60'
+                                        src='candy-cane-red-green-right.png' alt='Red and green candy cane (right)'>
+                        </button>
+                        <button class='selectDecor' id='candy-cane-red-green-left'
+                                onclick='select("candy-cane-red-green-left.png");'> <img
+                                        id='candy-cane-red-green-left.png' width='60' height='60'
+                                        src='candy-cane-red-green-left.png' alt='Red and green candy cane (left)'>
+                        </button>
+                        <button class='selectDecor' id='candy-cane-pink-right'
+                                onclick='select("candy-cane-pink-right.png");'> <img id='candy-cane-pink-right.png'
+                                        width='60' height='60' src='candy-cane-pink-right.png'
+                                        alt='Piink candy cane (right)'> </button>
+                        <button class='selectDecor' id='candy-cane-pink-left'
+                                onclick='select("candy-cane-pink-left.png");'> <img id='candy-cane-pink-left.png'
+                                        width='60' height='60' src='candy-cane-pink-left.png'
+                                        alt='Pink candy cane (left)'> </button>
+                        <button class='selectDecor' id='candy-cane-yellow-right'
+                                onclick='select("candy-cane-yellow-right.png");'>
+                                <img id='candy-cane-yellow-right.png' width='60' height='60'
+                                        src='candy-cane-yellow-right.png' alt='Yellow candy cane (right)'>
+                        </button>
+                        <button class='selectDecor' id='candy-cane-yellow-left'
+                                onclick='select("candy-cane-yellow-left.png");'>
+                                <img id='candy-cane-yellow-left.png' width='60' height='60'
+                                        src='candy-cane-yellow-left.png' alt='Yellow candy cane (left)'> </button>
+                        <button class='selectDecor' id='candy-cane-pink-yellow-right'
+                                onclick='select("candy-cane-pink-yellow-right.png");'> <img
+                                        id='candy-cane-pink-yellow-right.png' width='60' height='60'
+                                        src='candy-cane-pink-yellow-right.png' alt='Pink and yellow candy cane (right)'>
+                        </button>
+                        <button class='selectDecor' id='candy-cane-pink-yellow-left'
+                                onclick='select("candy-cane-pink-yellow-left.png");'> <img
+                                        id='candy-cane-pink-yellow-left.png' width='60' height='60'
+                                        src='candy-cane-pink-yellow-left.png' alt='Pink and yellow candy cane (lft)'>
+                        </button>
+                        <button class='selectDecor' id='candy-cane-rainbow-right'
+                                onclick='select("candy-cane-rainbow-right.png");'>
+                                <img id='candy-cane-rainbow-right.png' width='60' height='60'
+                                        src='candy-cane-rainbow-right.png' alt='Rainbow candy cane (right)'>
+                        </button>
+                        <button class='selectDecor' id='candy-cane-rainbow-left'
+                                onclick='select("candy-cane-rainbow-left.png");'>
+                                <img id='candy-cane-rainbow-left.png' width='60' height='60'
+                                        src='candy-cane-rainbow-left.png' alt='Rainbow candy cane (left)'>
+                        </button>
+                        <button class='selectDecor' id='candy-cane-zebra-right'
+                                onclick='select("candy-cane-zebra-right.png");'>
+                                <img id='candy-cane-zebra-right.png' width='60' height='60'
+                                        src='candy-cane-zebra-right.png' alt='Black and white candy cane (right)'>
+                        </button>
+                        <button class='selectDecor' id='candy-cane-zebra-left'
+                                onclick='select("candy-cane-zebra-left.png");'>
+                                <img id='candy-cane-zebra-left.png' width='60' height='60'
+                                        src='candy-cane-zebra-left.png' alt='Black and white candy cane (left)'>
+                        </button>
+                </div>
+
+                <div id='flowerDiv' class='dDiv hidden'>
+                        <button class='selectDecor' id='poinsettia-red' onclick='select("poinsettia-red.png");'> <img
+                                        id='poinsettia-red.png' width='60' height='60' src='poinsettia-red.png'
+                                        alt='Red poinsettia'>
+                        </button>
+                        <button class='selectDecor' id='poinsettia-orange' onclick='select("poinsettia-orange.png");'>
+                                <img id='poinsettia-orange.png' width='60' height='60' src='poinsettia-orange.png'
+                                        alt='Orange poinsettia'>
+                        </button>
+                        <button class='selectDecor' id='poinsettia-yellow' onclick='select("poinsettia-yellow.png");'>
+                                <img id='poinsettia-yellow.png' width='60' height='60' src='poinsettia-yellow.png'
+                                        alt='Yellow poinsettia'>
+                        </button>
+                        <button class='selectDecor' id='poinsettia-cyan' onclick='select("poinsettia-cyan.png");'> <img
+                                        id='poinsettia-cyan.png' width='60' height='60' src='poinsettia-cyan.png'
+                                        alt='Cyan poinsettia'>
+                        </button>
+                        <button class='selectDecor' id='poinsettia-blue' onclick='select("poinsettia-blue.png");'> <img
+                                        id='poinsettia-blue.png' width='60' height='60' src='poinsettia-blue.png'
+                                        alt='Blue poinsettia'>
+                        </button>
+                        <button class='selectDecor' id='poinsettia-purple' onclick='select("poinsettia-purple.png");'>
+                                <img id='poinsettia-purple.png' width='60' height='60' src='poinsettia-purple.png'
+                                        alt='Purple poinsettia'>
+                        </button>
+                        <button class='selectDecor' id='poinsettia-pink' onclick='select("poinsettia-pink.png");'> <img
+                                        id='poinsettia-pink.png' width='60' height='60' src='poinsettia-pink.png'
+                                        alt='Pink poinsettia'>
+                        </button>
+                        <button class='selectDecor' id='poinsettia-white' onclick='select("poinsettia-white.png");'>
+                                <img id='poinsettia-white.png' width='60' height='60' src='poinsettia-white.png'
+                                        alt='White poinsettia'>
+                        </button>
+                        <button class='selectDecor' id='hibiscus-red' onclick='select("hibiscus-red.png");'> <img
+                                        id='hibiscus-red.png' width='60' height='60' src='hibiscus-red.png'
+                                        alt='Red hibiscus'>
+                        </button>
+                        <button class='selectDecor' id='hibiscus-orange' onclick='select("hibiscus-orange.png");'> <img
+                                        id='hibiscus-orange.png' width='60' height='60' src='hibiscus-orange.png'
+                                        alt='Orange hibiscus'>
+                        </button>
+                        <button class='selectDecor' id='hibiscus-yellow' onclick='select("hibiscus-yellow.png");'> <img
+                                        id='hibiscus-yellow.png' width='60' height='60' src='hibiscus-yellow.png'
+                                        alt='Yellow hibiscus'>
+                        </button>
+                        <button class='selectDecor' id='hibiscus-cyan' onclick='select("hibiscus-cyan.png");'> <img
+                                        id='hibiscus-cyan.png' width='60' height='60' src='hibiscus-cyan.png'
+                                        alt='Cyan hibiscus'>
+                        </button>
+                        <button class='selectDecor' id='hibiscus-blue' onclick='select("hibiscus-blue.png");'> <img
+                                        id='hibiscus-blue.png' width='60' height='60' src='hibiscus-blue.png'
+                                        alt='Blue hibiscus'>
+                        </button>
+                        <button class='selectDecor' id='hibiscus-purple' onclick='select("hibiscus-purple.png");'> <img
+                                        id='hibiscus-purple.png' width='60' height='60' src='hibiscus-purple.png'
+                                        alt='Purple hibiscus'>
+                        </button>
+                        <button class='selectDecor' id='hibiscus-pink' onclick='select("hibiscus-pink.png");'> <img
+                                        id='hibiscus-pink.png' width='60' height='60' src='hibiscus-pink.png'
+                                        alt='Pink hibiscus'>
+                        </button>
+                        <button class='selectDecor' id='hibiscus-white' onclick='select("hibiscus-white.png");'> <img
+                                        id='hibiscus-white.png' width='60' height='60' src='hibiscus-white.png'
+                                        alt='White hibiscus'>
+                        </button>
+                </div>
+
+                <div id='lightDiv' class='dDiv hidden'>
+                        <button class='selectDecor' id='light-red' onclick='select("light-red.png");'> <img
+                                        id='light-red.png' width='27' height='30' src='light-red.png' alt='Red light'>
+                        </button>
+                        <button class='selectDecor' id='light-orange' onclick='select("light-orange.png");'> <img
+                                        id='light-orange.png' width='27' height='30' src='light-orange.png'
+                                        alt='Orange light'>
+                        </button>
+                        <button class='selectDecor' id='light-yellow' onclick='select("light-yellow.png");'> <img
+                                        id='light-yellow.png' width='27' height='30' src='light-yellow.png'
+                                        alt='Yellow light'>
+                        </button>
+                        <button class='selectDecor' id='light-green' onclick='select("light-green.png");'> <img
+                                        id='light-green.png' width='27' height='30' src='light-green.png'
+                                        alt='Green light'>
+                        </button>
+                        <button class='selectDecor' id='light-cyan' onclick='select("light-cyan.png");'> <img
+                                        id='light-cyan.png' width='27' height='30' src='light-cyan.png'
+                                        alt='Cyan light'>
+                        </button>
+                        <button class='selectDecor' id='light-blue' onclick='select("light-blue.png");'> <img
+                                        id='light-blue.png' width='27' height='30' src='light-blue.png'
+                                        alt='Blue light'>
+                        </button>
+                        <button class='selectDecor' id='light-purple' onclick='select("light-purple.png");'> <img
+                                        id='light-purple.png' width='27' height='30' src='light-purple.png'
+                                        alt='Purple light'>
+                        </button>
+                        <button class='selectDecor' id='light-pink' onclick='select("light-pink.png");'> <img
+                                        id='light-pink.png' width='27' height='30' src='light-pink.png'
+                                        alt='Pink light'>
+                        </button>
+                        <button class='selectDecor' id='light-white' onclick='select("light-white.png");'> <img
+                                        id='light-white.png' width='27' height='30' src='light-white.png'
+                                        alt='White light'>
+                        </button>
+                        <button class='selectDecor' id='light-rainbow' onclick='select("light-rainbow.png");'> <img
+                                        id='light-rainbow.png' width='27' height='30' src='light-rainbow.png'
+                                        alt='Rainbow light'>
+                        </button>
+                </div>
+
+                <div id='presDiv' class='dDiv hidden'>
+                        <button class='selectDecor' id='present-red' onclick='select("present-red.png");'> <img
+                                        id='present-red.png' width='80' height='80' src='present-red.png'
+                                        alt='Red present'>
+                        </button>
+                        <button class='selectDecor' id='present-red-long' onclick='select("present-red-long.png");'>
+                                <img id='present-red-long.png' width='96' height='68' src='present-red-long.png'
+                                        alt='Long red present'>
+                        </button>
+                        <button class='selectDecor' id='present-red-tall' onclick='select("present-red-tall.png");'>
+                                <img id='present-red-tall.png' width='52' height='96' src='present-red-tall.png'
+                                        alt='Tall red present'>
+                        </button>
+                        <button class='selectDecor' id='present-yellow' onclick='select("present-yellow.png");'> <img
+                                        id='present-yellow.png' width='80' height='80' src='present-yellow.png'
+                                        alt='Yellow present'>
+                        </button>
+                        <button class='selectDecor' id='present-yellow-long'
+                                onclick='select("present-yellow-long.png");'> <img id='present-yellow-long.png'
+                                        width='96' height='68' src='present-yellow-long.png' alt='Long yellow present'>
+                        </button>
+                        <button class='selectDecor' id='present-yellow-tall'
+                                onclick='select("present-yellow-tall.png");'> <img id='present-yellow-tall.png'
+                                        width='52' height='96' src='present-yellow-tall.png' alt='Tall yellow present'>
+                        </button>
+                        <button class='selectDecor' id='present-green' onclick='select("present-green.png");'> <img
+                                        id='present-green.png' width='80' height='80' src='present-green.png'
+                                        alt='Green present'>
+                        </button>
+                        <button class='selectDecor' id='present-green-long' onclick='select("present-green-long.png");'>
+                                <img id='present-green-long.png' width='96' height='68' src='present-green-long.png'
+                                        alt='Long green present'>
+                        </button>
+                        <button class='selectDecor' id='present-green-tall' onclick='select("present-green-tall.png");'>
+                                <img id='present-green-tall.png' width='52' height='96' src='present-green-tall.png'
+                                        alt='Tall green present'>
+                        </button>
+                        <button class='selectDecor' id='present-blue' onclick='select("present-blue.png");'> <img
+                                        id='present-blue.png' width='80' height='80' src='present-blue.png'
+                                        alt='Blue present'>
+                        </button>
+                        <button class='selectDecor' id='present-blue-long' onclick='select("present-blue-long.png");'>
+                                <img id='present-blue-long.png' width='96' height='68' src='present-blue-long.png'
+                                        alt='Long blue present'>
+                        </button>
+                        <button class='selectDecor' id='present-blue-tall' onclick='select("present-blue-tall.png");'>
+                                <img id='present-blue-tall.png' width='52' height='96' src='present-blue-tall.png'
+                                        alt='Tall blue present'>
+                        </button>
+                        <button class='selectDecor' id='present-dark-blue' onclick='select("present-dark-blue.png");'>
+                                <img id='present-dark-blue.png' width='80' height='80' src='present-dark-blue.png'
+                                        alt='Dark blue present'>
+                        </button>
+                        <button class='selectDecor' id='present-dark-blue-long'
+                                onclick='select("present-dark-blue-long.png");'>
+                                <img id='present-dark-blue-long.png' width='96' height='68'
+                                        src='present-dark-blue-long.png' alt='Long dark blue present'> </button>
+                        <button class='selectDecor' id='present-dark-blue-tall'
+                                onclick='select("present-dark-blue-tall.png");'>
+                                <img id='present-dark-blue-tall.png' width='52' height='96'
+                                        src='present-dark-blue-tall.png' alt='Tall dark blue present'> </button>
+                        <button class='selectDecor' id='present-purple' onclick='select("present-purple.png");'> <img
+                                        id='present-purple.png' width='80' height='80' src='present-purple.png'
+                                        alt='Purple present'>
+                        </button>
+                        <button class='selectDecor' id='present-purple-long'
+                                onclick='select("present-purple-long.png");'> <img id='present-purple-long.png'
+                                        width='96' height='68' src='present-purple-long.png' alt='Long purple present'>
+                        </button>
+                        <button class='selectDecor' id='present-purple-tall'
+                                onclick='select("present-purple-tall.png");'> <img id='present-purple-tall.png'
+                                        width='52' height='96' src='present-purple-tall.png' alt='Tall purple preseent'>
+                        </button>
+                </div>
+
+                <div id='topDiv' class='dDiv hidden'>
+                        <button class='selectDecor' id='star-gold-1' onclick='select("star-gold-1.png");'> <img
+                                        id='star-gold-1.png' width='60' height='60' src='star-gold-1.png'
+                                        alt='Gold star 1'>
+                        </button>
+                        <button class='selectDecor' id='star-gold-2' onclick='select("star-gold-2.png");'> <img
+                                        id='star-gold-2.png' width='60' height='60' src='star-gold-2.png'
+                                        alt='Gold star 2'>
+                        </button>
+                        <button class='selectDecor' id='star-gold-3' onclick='select("star-gold-3.png");'> <img
+                                        id='star-gold-3.png' width='60' height='60' src='star-gold-3.png'
+                                        alt='Gold star 3'>
+                        </button>
+                        <button class='selectDecor' id='star-gold-4' onclick='select("star-gold-4.png");'> <img
+                                        id='star-gold-4.png' width='60' height='60' src='star-gold-4.png'
+                                        alt='Gold star 4'>
+                        </button>
+                        <button class='selectDecor' id='star-red-1' onclick='select("star-red-1.png");'> <img
+                                        id='star-red-1.png' width='60' height='60' src='star-red-1.png'
+                                        alt='Red star 1'>
+                        </button>
+                        <button class='selectDecor' id='star-red-2' onclick='select("star-red-2.png");'> <img
+                                        id='star-red-2.png' width='60' height='60' src='star-red-2.png'
+                                        alt='Red star 2'>
+                        </button>
+                        <button class='selectDecor' id='star-red-3' onclick='select("star-red-3.png");'> <img
+                                        id='star-red-3.png' width='60' height='60' src='star-red-3.png'
+                                        alt='Red star 3'>
+                        </button>
+                        <button class='selectDecor' id='star-red-4' onclick='select("star-red-4.png");'> <img
+                                        id='star-red-4.png' width='60' height='60' src='star-red-4.png'
+                                        alt='Red star 4'>
+                        </button>
+                        <button class='selectDecor' id='star-white-1' onclick='select("star-white-1.png");'> <img
+                                        id='star-white-1.png' width='60' height='60' src='star-white-1.png'
+                                        alt='White star 1'>
+                        </button>
+                        <button class='selectDecor' id='star-white-2' onclick='select("star-white-2.png");'> <img
+                                        id='star-white-2.png' width='60' height='60' src='star-white-2.png'
+                                        alt='White star 2'>
+                        </button>
+                        <button class='selectDecor' id='star-white-3' onclick='select("star-white-3.png");'> <img
+                                        id='star-white-3.png' width='60' height='60' src='star-white-3.png'
+                                        alt='White star 3'>
+                        </button>
+                        <button class='selectDecor' id='star-white-4' onclick='select("star-white-4.png");'> <img
+                                        id='star-white-4.png' width='60' height='60' src='star-white-4.png'
+                                        alt='White star 4'>
+                        </button>
+                        <button class='selectDecor' id='bow-gold' onclick='select("bow-gold.png");'> <img
+                                        id='bow-gold.png' width='80' height='80' src='bow-gold.png' alt='Gold bow'>
+                        </button>
+                        <button class='selectDecor' id='bow-red' onclick='select("bow-red.png");'> <img id='bow-red.png'
+                                        width='80' height='80' src='bow-red.png' alt='Red bow'> </button>
+                        <button class='selectDecor' id='bow-white' onclick='select("bow-white.png");'> <img
+                                        id='bow-white.png' width='80' height='80' src='bow-white.png' alt='White bow'>
+                        </button>
+                        <button class='selectDecor' id='finial-gold' onclick='select("finial-gold.png");'> <img
+                                        id='finial-gold.png' width='80' height='80' src='finial-gold.png'
+                                        alt='Gold finial'>
+                        </button>
+                        <button class='selectDecor' id='finial-red' onclick='select("finial-red.png");'> <img
+                                        id='finial-red.png' width='80' height='80' src='finial-red.png'
+                                        alt='Red finial'>
+                        </button>
+                        <button class='selectDecor' id='finial-white' onclick='select("finial-white.png");'> <img
+                                        id='finial-white.png' width='80' height='80' src='finial-white.png'
+                                        alt='White finial'>
+                        </button>
+                </div>
+
+                <div id='secretDiv' class='dDiv hidden'>
+                        <button class='selectDecor' id='ornament-pink-2' onclick='select("ornament-pink-2.png");'> <img
+                                        id='ornament-pink-2.png' width='60' height='60' src='ornament-pink-2.png'
+                                        alt='Pink ornament 2'>
+                        </button>
+                        <button class='selectDecor' id='ornament-uwu' onclick='select("ornament-uwu.png");'> <img
+                                        id='ornament-uwu.png' width='60' height='60' src='ornament-uwu.png'
+                                        alt='UwU ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-icicle' onclick='select("ornament-icicle.png");'> <img
+                                        id='ornament-icicle.png' width='60' height='60' src='ornament-icicle.png'
+                                        alt='Icicle ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-tree' onclick='select("ornament-tree.png");'> <img
+                                        id='ornament-tree.png' width='60' height='60' src='ornament-tree.png'
+                                        alt='Tree ornament'>
+                        </button>
+                        <button class='selectDecor' id='ornament-star' onclick='select("ornament-star.png");'> <img
+                                        id='ornament-star.png' width='60' height='60' src='ornament-star.png'
+                                        alt='Star ornament'>
+                        </button>
+                </div>
+
+        </div>
+
+        <button class='hidden md:flex absolute z-40 bg-slate-200/90 transition-all hover:enabled:bg-red-200/90 border-slate-400/90 border-[2.5px] text-slate-800 rounded-md md:px-3 md:py-2 m-3'
+                onclick='toggleB();' id='hide'><i id='hideI' class='fa-solid fa-angle-left text-xl p-0 m-0'
+                        aria-label='Hide' title='Hide/show'></i></button>
+
+        <div id='canvases' class='relative'>
+
+                <canvas id='canvas4' class='absolute top-0 right-0'>
+                </canvas>
+
+                <canvas id='canvas3' class='absolute top-0 right-0 z-10'>
+                        <img id='tree-red.png' width='600' height='900' src='tree-red.png'>
+                        <img id='tree-yellow.png' width='600' height='900' src='tree-yellow.png'>
+                        <img id='tree' width='600' height='900' src='tree.png'>
+                        <img id='tree-blue.png' width='600' height='900' src='tree-blue.png'>
+                        <img id='tree-pink.png' width='600' height='900' src='tree-pink.png'>
+                        <img id='tree-white.png' width='600' height='900' src='tree-white.png'>
+                </canvas>
+
+                <canvas id='canvas2' class='absolute top-0 right-0 z-20'>
+                        <img id='garland-red.png' width='600' height='900' src='garland-red.png'>
+                        <img id='garland-red-and-green.png' width='600' height='900' src='garland-red-and-green.png'>
+                        <img id='garland-red-and-white.png' width='600' height='900' src='garland-red-and-white.png'>
+                        <img id='garland-yellow.png' width='600' height='900' src='garland-yellow.png'>
+                        <img id='garland-yellow-and-white.png' width='600' height='900'
+                                src='garland-yellow-and-white.png'>
+                        <img id='garland-green.png' width='600' height='900' src='garland-green.png'>
+                        <img id='garland-green-and-white.png' width='600' height='900'
+                                src='garland-green-and-white.png'>
+                        <img id='garland-blue.png' width='600' height='900' src='garland-blue.png'>
+                        <img id='garland-blue-and-white.png' width='600' height='900' src='garland-blue-and-white.png'>
+                        <img id='garland-pink.png' width='600' height='900' src='garland-pink.png'>
+                        <img id='garland-pink-and-white.png' width='600' height='900' src='garland-pink-and-white.png'>
+                        <img id='garland-white.png' width='600' height='900' src='garland-white.png'>
+                </canvas>
+
+                <canvas id='canvas' class='absolute top-0 right-0 z-30 cursor-pointer'>
+                </canvas>
+
+        </div>
 
 </body>
 
