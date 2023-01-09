@@ -1,7 +1,7 @@
 const h1 = 'font-weight: bold; font-size: 14.5px; color: #f24b4b;';
 const h2 = 'font-weight: bold; font-size: 13px; color: #16a34a;';
 
-console.log('%c whats new in v2023:', h1);
+//console.log('%c whats new in v2023:', h1);
 console.log('%c Additions', h2, '\n • Ability to select specific decorations instead of just random ones\n • Ability to change tree and garland color\n • Small colorful lights with a glowing effect\n • Chartreuse, lime, sparkling, and multicolor ornaments\n • Rainbow and zebra candy canes\n • A new type of flower\n • Different colored stars and bows, along with finials\n • Ability to change background color\n • Click numbers on keyboard to switch between decor\n • Now made with Tailwind');
 console.log('%c Improvements', h2, '\n • Updated many existing decor designs\n • Works better on smaller screens\n • Accessibility improvements');
 
@@ -117,17 +117,19 @@ let decorDivs = document.querySelectorAll('.dDiv');
 
 buttons.forEach((decorB) => {
     decorB.addEventListener('click', () => {
-        // removes bg-lightGreen/90 class from all buttons
+        // remove classes from all buttons
         buttons.forEach((decorB) => {
             decorB.classList.remove('bg-lightGreen/90');
             decorB.classList.remove('md:bg-lightGreen/90');
             decorB.classList.remove('border-slate-400/90');
             decorB.classList.remove('md:border-slate-400/90');
+            decorB.classList.add('hover:enabled:bg-red-200/90');
         });
 
-        // add bg-lightGreen/90 class to the button that has been clicked
+        // add classes to the button that has been clicked
         decorB.classList.add('bg-lightGreen/90');
         decorB.classList.add('border-slate-400/90');
+        decorB.classList.remove('hover:enabled:bg-red-200/90');
     });
 });
 
@@ -613,15 +615,17 @@ let dButtons = document.querySelectorAll('.selectDecor');
 dButtons.forEach((selectDecor) => {
     selectDecor.addEventListener('click', () => {
 
-        // removes bg-lightGreen/90 class from all dButtons
+        // removes classes from all dButtons
         dButtons.forEach((selectDecor) => {
             selectDecor.classList.remove('bg-lightGreen/90');
             selectDecor.classList.remove('border-slate-400/90');
+            selectDecor.classList.add('hover:enabled:bg-red-200/90');
         });
 
-        // add bg-lightGreen/90 class to the button that has been clicked
+        // add classes to the button that has been clicked
         selectDecor.classList.add('bg-lightGreen/90');
         selectDecor.classList.add('border-slate-400/90');
+        selectDecor.classList.remove('hover:enabled:bg-red-200/90');
     });
 });
 

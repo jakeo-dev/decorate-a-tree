@@ -536,10 +536,6 @@ video {
   transition-duration: 150ms;
 }
 
-.button:enabled:hover {
-  background-color: rgb(254 202 202 / 0.9);
-}
-
 @media (min-width: 768px) {
   .button {
     padding-left: 1rem;
@@ -567,10 +563,6 @@ video {
 
 .selectDecor:hover {
   border-color: rgb(148 163 184 / 0.8);
-}
-
-.selectDecor:enabled:hover {
-  background-color: rgb(254 202 202 / 0.9);
 }
 
 @media (min-width: 768px) {
