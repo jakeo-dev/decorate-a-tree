@@ -706,10 +706,6 @@ video {
   margin-top: 1rem;
 }
 
-.mt-8 {
-  margin-top: 2rem;
-}
-
 .block {
   display: block;
 }
@@ -941,10 +937,6 @@ video {
 
 .pr-10 {
   padding-right: 2.5rem;
-}
-
-.text-center {
-  text-align: center;
 }
 
 .font-BalsamiqSans {

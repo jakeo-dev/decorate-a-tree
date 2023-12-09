@@ -1,7 +1,7 @@
 const h1 = 'font-weight: bold; font-size: 14.5px; color: #f24b4b;';
 const h2 = 'font-weight: bold; font-size: 13px; color: #16a34a;';
 console.log('%c whats new in v2024:', h1);
-console.log('%c Additions', h2, '\n • Change the size of decor\n • Hover to preview decor placement before placing\n • Tree and garland selector\n • Icicle, bell, snowman, black, sparkling light blue, and more dualcolor ornaments\n • Green toppers\n • Orange, dark blue, and purple trees & garland\n • White presents\n • More background colors');
+console.log('%c Additions', h2, '\n • Change the size of decor\n • Hover to preview decor placement before placing\n • Tree and garland selector\n • Icicle, bell, snowman, black, sparkling light blue, and more dualcolor ornaments\n • Green and blue toppers\n • Orange, dark blue, and purple trees & garland\n • White presents\n • More background colors');
 console.log('%c Improvements', h2, '\n • Improved design\n • Updated many ornament designs');
 
 let decor = 'orn';
@@ -593,20 +593,22 @@ canvas5.addEventListener('mousemove', function (event) {
 
     if (dImg == 'random.png') {
         /* random selection */
-        if (decor == 'top') {
-            if (farEnough) d = document.getElementById(topperArray[Math.floor(Math.random() * topperArray.length)]);
-        } else if (decor == 'orn') {
-            if (farEnough) d = document.getElementById(ornamentArray[Math.floor(Math.random() * ornamentArray.length)]);
-        } else if (decor == 'cane') {
-            if (farEnough) d = document.getElementById(candyCaneArray[Math.floor(Math.random() * candyCaneArray.length)]);
-        } else if (decor == 'flower') {
-            if (farEnough) d = document.getElementById(flowerArray[Math.floor(Math.random() * flowerArray.length)]);
-        } else if (decor == 'light') {
-            if (farEnough) d = document.getElementById(lightArray[Math.floor(Math.random() * lightArray.length)]);
-        } else if (decor == 'pres') {
-            if (farEnough) d = document.getElementById(presentArray[Math.floor(Math.random() * presentArray.length)]);
-        } else if (decor == 'sec') {
-            if (farEnough) d = document.getElementById(secretArray[Math.floor(Math.random() * secretArray.length)]);
+        if (farEnough) { // dont change this to be (dImg == 'random.png' && farEnough)
+            if (decor == 'top') {
+                d = document.getElementById(topperArray[Math.floor(Math.random() * topperArray.length)]);
+            } else if (decor == 'orn') {
+                d = document.getElementById(ornamentArray[Math.floor(Math.random() * ornamentArray.length)]);
+            } else if (decor == 'cane') {
+                d = document.getElementById(candyCaneArray[Math.floor(Math.random() * candyCaneArray.length)]);
+            } else if (decor == 'flower') {
+                d = document.getElementById(flowerArray[Math.floor(Math.random() * flowerArray.length)]);
+            } else if (decor == 'light') {
+                d = document.getElementById(lightArray[Math.floor(Math.random() * lightArray.length)]);
+            } else if (decor == 'pres') {
+                d = document.getElementById(presentArray[Math.floor(Math.random() * presentArray.length)]);
+            } else if (decor == 'sec') {
+                d = document.getElementById(secretArray[Math.floor(Math.random() * secretArray.length)]);
+            }
         }
     } else {
         /* specific selection */
